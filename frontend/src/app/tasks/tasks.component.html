@@ -1,0 +1,12 @@
+<div *ngIf="isLoading" class="loading-indicator">
+    Loading...
+  </div>
+  
+<div class="card-container">
+    <div *ngFor="let task of tasks" class="card">
+      <h3>{{ task.name }}</h3>
+      <p>{{task.id}}</p>
+      <p>Leave Application date: {{ task.created }}</p>
+    </div>
+  </div>
+  

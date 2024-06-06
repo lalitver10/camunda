@@ -1,0 +1,73 @@
+<div class="mt-3 b-3 p-1  bg-danger text-white rounded">
+    <span> <h3>Sign Up</h3></span>
+  </div>
+ 
+  <div class="container" class="t-4">
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="rollNum">Roll Number</label>
+          <input type="text" id="rollNum" class="form-control" formControlName="rollNum">
+          <div *ngIf="leaveForm.controls.rollNum.invalid && (leaveForm.controls.rollNum.dirty || leaveForm.controls.rollNum.touched)">
+            <small class="text-danger">Roll Number is required</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="names">
+          <div *ngIf="leaveForm.controls.names.invalid && (leaveForm.controls.names.dirty || leaveForm.controls.names.touched)">
+            <small class="text-danger">Name is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="course">Course</label>
+          <input type="text" id="course" class="form-control" formControlName="course">
+          <div *ngIf="leaveForm.controls.course.invalid && (leaveForm.controls.course.dirty || leaveForm.controls.course.touched)">
+            <small class="text-danger">Course is required</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="dept">Department</label>
+          <input type="text" id="dept" class="form-control" formControlName="dept">
+          <div *ngIf="leaveForm.controls.dept.invalid && (leaveForm.controls.dept.dirty || leaveForm.controls.dept.touched)">
+            <small class="text-danger">Department is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" formControlName="password">
+          <div *ngIf="leaveForm.controls.password.invalid && (leaveForm.controls.password.dirty || leaveForm.controls.password.touched)">
+            <small class="text-danger">Password is required</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="userType">User Type</label>
+          <select id="userType" class="form-control" formControlName="userType" (change)="onUserTypeChange()">
+            <option value="student">Student</option>
+            <option value="professor">Professor</option>
+          </select>
+          <div *ngIf="leaveForm.controls.userType.invalid && (leaveForm.controls.userType.dirty || leaveForm.controls.userType.touched)">
+            <small class="text-danger">User Type is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="showGuideField">
+        <div class="col-6">
+          <label for="guide">Guide</label>
+          <input type="text" id="guide" class="form-control" formControlName="guide">
+          <div *ngIf="leaveForm.controls.guide.invalid && (leaveForm.controls.guide.dirty || leaveForm.controls.guide.touched)">
+            <small class="text-danger">Guide is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
