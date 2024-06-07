@@ -14,4 +14,7 @@ export class camundaService{
       getAllTask():Observable<HttpResponse<any>>{
         return this.http.get(`${this.baseUrl}/getAlltask`,{ observe: 'response' });
       }
+      getTask():Observable<HttpResponse<any>>{
+        return this.http.get(`${this.baseUrl}/getAlltask`,{ observe: 'response' });
+      }
 }

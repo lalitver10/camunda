@@ -51,7 +51,7 @@ async function postLeave(req,res){
     const token = req.headers.authorization.split(" ")[1];
     const payload=jwt.decode(token);
   try{
-    const api= await fetch(apiUrl+`/task?assignee=demo`, {
+    const api= await fetch(apiUrl+`/task?assignee=${payload.rollNum}`, {
       method: 'GET',
       headers: headers,
     })

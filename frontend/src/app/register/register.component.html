@@ -6,10 +6,10 @@
     <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
       <div class="row mb-3">
         <div class="col-6">
-          <label for="rollNum">Roll Number</label>
+          <label for="rollNum">User Name</label>
           <input type="text" id="rollNum" class="form-control" formControlName="rollNum">
           <div *ngIf="leaveForm.controls.rollNum.invalid && (leaveForm.controls.rollNum.dirty || leaveForm.controls.rollNum.touched)">
-            <small class="text-danger">Roll Number is required</small>
+            <small class="text-danger">User Name is required</small>
           </div>
         </div>
         <div class="col-6">

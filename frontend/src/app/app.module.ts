@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./services/auth-Interceptor";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { TaskComponent } from './task/task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     LeaveComponent,
     TasksComponent,
+    TaskComponent,
     
   ],
   imports: [
