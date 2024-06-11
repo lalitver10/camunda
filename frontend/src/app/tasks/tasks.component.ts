@@ -19,8 +19,16 @@ export class TasksComponent implements OnInit {
       this.isLoading = false;  
     }) 
   }
-  goToTask(taskId: string): void {
-    this.router.navigate(['/task',taskId]);
+  goToTask(taskData: { taskId: string, taskName: string }): void {
+    if(taskData.taskName=='Approval For Guide')
+      this.router.navigate(['/guideApproval',taskData.taskId]);
+    if(taskData.taskName=='Approval For DGPRC')
+      this.router.navigate(['/dgpcApproval',taskData.taskId]);
+    if(taskData.taskName=='Approval For HOD')
+      this.router.navigate(['/hodApproval',taskData.taskId]);
+    if(taskData.taskName=='Applicant Approval')
+      this.router.navigate(['/applicantForm',taskData.taskId]);
+    
   }
 }
 

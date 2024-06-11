@@ -6,6 +6,7 @@ import { Observable, Subject } from "rxjs";
 export class loginAndSignup{
     private isAuthenticate=false;
     private token: any;
+
     private url="http://localhost:9002/api/user";
     private userDetails:any
     private authStatusListener = new Subject<boolean>();
@@ -44,4 +45,5 @@ export class loginAndSignup{
     console.log("getUser")
     return this.http.get(`${this.url}/getUser`);
   }
+
 }

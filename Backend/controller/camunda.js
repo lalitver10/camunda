@@ -57,7 +57,6 @@ async function postLeave(req,res){
     })
     if(!api.ok)return api.status(401);
     const data=await api.json();
-    console.log(data)
     let taskDetails = data.map(obj => {
       return { id: obj.id,name: obj.name,created:obj.created};
      });
@@ -67,8 +66,69 @@ async function postLeave(req,res){
   }
 }
 
+async function gettask(req,res){
+  try{ 
+    console.log(req.body._id)
+  const data=await fetch(`http://localhost:8080/engine-rest/task/${req.body._id}/variables/`, {
+      method: 'GET',
+      headers: headers,
+    })
+    //if(!taskDetails.ok) throw new Error(`HTTP error! status: ${taskDetails.status}`);
+    const taskDetails=await data.json();
+    
+    return res.send(taskDetails)
+  }catch(err){
+      res.status(500).json({'error':err})
+    }
+}
+
+async function completeTask(req,res){
+  console.log('*********************************************')
+   let body;
+  try{  
+    console.log(req.body.guide_approval,req.body.guide_comment,req.body.taskID);
+    
+    if(req.body.taskName=='Approval For DGPRC'){
+       body={
+        "variables": {
+          "dgpc_approval": {"value":req.body.dgpc_approval,"type":"String"},
+          "dgprc_comment":{"value":req.body.dgpc_comment,"type":"String"},
+        }
+      }
+    }else if(req.body.taskName=='Approval For Guide'){
+      body={
+        "variables": {
+          "guide_approval": {"value":req.body.guide_approval,"type":"String"},
+          "comments":{"value":req.body.guide_comment,"type":"String"},
+        }
+      }
+      
+    } else if(req.body.taskName=='Approval For HOD'){
+      body={
+        "variables": {
+          "hod_approval": {"value":req.body.hod_approval,"type":"String"},
+          "hod_comment":{"value":req.body.hod_comment,"type":"String"},
+        }
+      }
+      
+    }
+  const data=await fetch(apiUrl+`/task/${req.body.taskID}/complete`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(body) 
+    })
+    if(!data.ok) res.status(301).json({"message":"Leave Applied UnSuccessfully!!"})
+    return res.status(201).json({"message":"Leave Applied Successfully!!"})
+  }catch(err){
+      res.status(500).json({'error':'Something Went Wrong!!'})
+    }
+}
+
 
 module.exports = {
-    postLeave,
-    getAlltask
+  completeTask,  
+  postLeave,
+  getAlltask,
+  gettask
+    
   };

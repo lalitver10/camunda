@@ -1,0 +1,96 @@
+<div *ngIf="isLoading" class="loading-indicator">
+    Loading...
+  </div>
+<div class="mt-3 p-4 bg-secondary text-white rounded">
+    <h1>Leave Application</h1>
+  </div>
+  <div class="container" *ngIf="leaveForm">
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="rollNum">Roll Number</label>
+          <input type="text" id="rollNum" class="form-control" formControlName="rollNum">
+        </div>
+        <div class="col-6">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="course">Course</label>
+          <input type="text" id="course" class="form-control" formControlName="course">
+        </div>
+        <div class="col-6">
+          <label for="dept">Department</label>
+          <input type="text" id="dept" class="form-control" formControlName="dept">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="fromDate">From</label>
+          <input type="date" id="fromDate" class="form-control" formControlName="fromDate">
+          <div *ngIf="leaveForm.controls.fromDate.invalid && (leaveForm.controls.fromDate.dirty || leaveForm.controls.fromDate.touched)">
+            <small class="text-danger">Start date is required</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="toDate">To</label>
+          <input type="date" id="toDate" class="form-control" formControlName="toDate">
+          <div *ngIf="leaveForm.controls.toDate.invalid && (leaveForm.controls.toDate.dirty || leaveForm.controls.toDate.touched)">
+            <small class="text-danger">End date is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="remLeave">Remaining Leaves</label>
+          <input type="number" id="remLeave" class="form-control" formControlName="remLeave">
+          <div *ngIf="leaveForm.controls.remLeave.invalid && (leaveForm.controls.remLeave.dirty || leaveForm.controls.remLeave.touched)">
+            <small class="text-danger">Number of Leave is required</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="textField">Assignee</label>
+          <input type="text" id="assignee" class="form-control" formControlName="assignee">
+          <div *ngIf="leaveForm.controls.assignee.invalid && (leaveForm.controls.assignee.dirty || leaveForm.controls.assignee.touched)">
+            <small class="text-danger">Assignee is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-8">
+          <label for="comments">Comments</label>
+            <textarea type="text-area" id="comment" class="form-control" formControlName="comment"></textarea>
+          <div *ngIf="leaveForm.controls.comment.invalid && (leaveForm.controls.comment.dirty || leaveForm.controls.comment.touched)">
+            <small class="text-danger">Commnent is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+            <div *ngFor="let option of options">
+                <label>
+                  <input type="radio" [value]="option.value" formControlName="guide_approval"/>
+                  {{option.label}}
+                </label>
+            </div>
+        </div>
+      </div>
+      <div class="row mb-3" >
+        <div class="col-8" *ngIf="!isGuideApproved">
+          <label for="remLeave">Guide Comments</label>
+            <textarea type="text-area" id="guide_comment" class="form-control" formControlName="guide_comment"></textarea>
+          <div *ngIf="leaveForm.controls.guide_comment.invalid && (leaveForm.controls.guide_comment.dirty || leaveForm.controls.guide_comment.touched)">
+            <small class="text-danger">Commnent is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

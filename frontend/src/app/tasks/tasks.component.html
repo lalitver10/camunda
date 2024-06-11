@@ -7,7 +7,7 @@
       <h3>{{ task.name }}</h3>
       <p>{{task.id}}</p>
       <p>Leave Application date: {{ task.created }}</p>
-      <button (click)="goToTask(task.id)">Action</button>
+      <button (click)="goToTask({'taskId':task.id,'taskName':task.name})">Action</button>
     </div>
   </div>
   

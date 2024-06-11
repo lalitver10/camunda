@@ -16,7 +16,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./services/auth-Interceptor";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { TaskComponent } from './task/task.component';
+import { TaskComponent } from './task/task/task.component';
+import { ApplicantComponent } from './task/applicant/applicant.component';
+import { GuideFormComponent } from './task/guide-form/guide-form.component';
+import { HodFormComponent } from './task/hod-form/hod-form.component';
+import { DgpcFormComponent } from './task/dgpc-form/dgpc-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,10 @@ import { TaskComponent } from './task/task.component';
     LeaveComponent,
     TasksComponent,
     TaskComponent,
+    ApplicantComponent,
+    GuideFormComponent,
+    HodFormComponent,
+    DgpcFormComponent,
     
   ],
   imports: [
