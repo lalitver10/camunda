@@ -21,6 +21,7 @@ import { ApplicantComponent } from './task/applicant/applicant.component';
 import { GuideFormComponent } from './task/guide-form/guide-form.component';
 import { HodFormComponent } from './task/hod-form/hod-form.component';
 import { DgpcFormComponent } from './task/dgpc-form/dgpc-form.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { DgpcFormComponent } from './task/dgpc-form/dgpc-form.component';
     GuideFormComponent,
     HodFormComponent,
     DgpcFormComponent,
+    ProgressBarComponent,
     
   ],
   imports: [
