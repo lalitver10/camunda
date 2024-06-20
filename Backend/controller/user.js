@@ -54,7 +54,7 @@ async function login(req, res){
 async function getUser(req,res){
     const token = req.headers.authorization.split(" ")[1];
    const payload=jwt.decode(token);
-   console.log(payload.id)
+   console.log(payload.id,'Hii how are you')
    const data=await User.findById(payload.id);
    const details={
     'rollNum':data.rollNum,
