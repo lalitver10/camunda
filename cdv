@@ -1,0 +1,59 @@
+[33mcommit a2b949b011ecf07db8f3f8d817c079a2079d3c15[m[33m ([m[1;36mHEAD -> [m[1;32mformio[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Wed Jun 19 10:20:07 2024 +0530
+
+    Added Process bar and dockerfile file
+
+[33mcommit 9602a7dac1be798f156ab4eec011b3c3ccdc4313[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Tue Jun 11 10:24:30 2024 +0530
+
+    Added screens for Leave Approval
+
+[33mcommit 97f9b63aa15e0ce02115316f61d1efeb7f17fb8b[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Fri Jun 7 11:28:59 2024 +0530
+
+    Added Task View Component
+
+[33mcommit 30d150ff3153a59e3a036882658124a4669881ce[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 12:14:24 2024 +0530
+
+    changs in .gitignore
+
+[33mcommit a3ffe864680407c15f270793119b2ad51d16146e[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 11:10:23 2024 +0530
+
+    added .gitignore file
+
+[33mcommit 8d9f60e3b1075a4bee36aa419a0bba5431a740f1[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 11:01:21 2024 +0530
+
+    removed node_modules
+
+[33mcommit 89361de6c1114b3e0f773f3f1e2bac697039fc12[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 10:59:59 2024 +0530
+
+    removed .vscode xyz.txt
+
+[33mcommit 2b1abd0c4605bd4f5f83071ddc8063e87a891ba2[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 10:53:34 2024 +0530
+
+    remove xyz.txt
+
+[33mcommit 52f6e1254463fe7947f5215410964f0b92135104[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 10:48:23 2024 +0530
+
+    some testing file
+
+[33mcommit 97c73411348c7ea92e2783d2b1e6a120f0f38af1[m
+Author: lalitver10 <lalitver10@gmail.com>
+Date:   Thu Jun 6 10:42:27 2024 +0530
+
+    first commit

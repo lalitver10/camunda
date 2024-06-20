@@ -83,7 +83,6 @@ async function gettask(req,res){
 }
 
 async function completeTask(req,res){
-  console.log('*********************************************')
    let body;
   try{  
     console.log(req.body.guide_approval,req.body.guide_comment,req.body.taskID);
