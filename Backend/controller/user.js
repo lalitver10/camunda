@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/userModel');
+const camunda=require('./camunda')
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken');
 const saltRounds = 10;
@@ -7,13 +8,14 @@ const passkey='#5ftwfd&vsgvc(0*&$%vgygy';
 
 async function registerUser(req, res){
     const password=await bcrypt.hash(req.body.password, saltRounds);
-    const { rollNum,names,course,dept,userType,guide } = req.body;
+    const { rollNum,names,course,dept,email,userType,guide } = req.body;
     try {
         const newUser = new User({
             rollNum,
             names,
             course,
             dept,
+            email,
             userType,
             guide,
             password
@@ -23,8 +25,12 @@ async function registerUser(req, res){
         return res.status(201).json({ message: "User Already Exist!!" }); 
       }
         else{
-        await newUser.save();
-        res.status(200).json({message: "User registered successfully" });
+            const response =await await newUser.save();
+
+            if(response){
+                camunda.createUser(req.body);
+                res.status(200).json({message: "User registered successfully" });
+            }
         }
     } catch (error) {
         res.status(500).json({ message: "Error registering user", error: error.message });

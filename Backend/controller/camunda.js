@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/userModel');
+const email = require('../models/EmailService');
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken');
 const saltRounds = 10;
@@ -39,7 +40,11 @@ async function postLeave(req,res){
       }) 
     })
     if(!data.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return res.status(201).json({"message":"Leave Applied Successfully!!"})
+    else{
+      email.sentMail(req.body.name);
+     return res.status(201).json({"message":"Leave Applied Successfully!!"});
+     
+    }
   }catch(err){
       res.status(500).json({'error':'Something Went Wrong!!'})
     }
@@ -123,11 +128,34 @@ async function completeTask(req,res){
     }
 }
 
+async function createUser(body){
+  try{ 
+      const data=await fetch(`http://localhost:8080/engine-rest/user/create`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        "profile": {
+          "id":body.rollNum,
+          "firstName":body.names,
+          "lastName":body.names,
+          "email":body.email
+        },
+        "credentials":{
+          "password":body.password
+        }
+      }) 
+    })
+    if(!data.ok) throw new Error(`HTTP error! status: ${data.status}`);
+    return;
+  }catch(err){
+    throw new Error(`HTTP error! status: ${err}`);
+    }
+}
 
 module.exports = {
   completeTask,  
   postLeave,
   getAlltask,
-  gettask
-    
+  gettask,
+  createUser
   };

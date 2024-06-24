@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit{
       rollNum: ['', Validators.required],
       names: ['', Validators.required],
       course: ['', Validators.required],
+      email: ['', Validators.required],
       dept: ['', Validators.required],
       guide:['', Validators.required],
       password:['', Validators.required],
