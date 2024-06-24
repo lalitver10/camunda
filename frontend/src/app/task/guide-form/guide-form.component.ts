@@ -75,9 +75,13 @@ export class GuideFormComponent {
       const data={
       'taskID':this.taskId,
       'taskName':'Approval For Guide',
-      'guide_approval':this.leaveForm.get('guide_approval').value,
-      'guide_comment':this.leaveForm.get('guide_comment').value
+      'camunda_data':{
+        "variables": {
+          "guide_approval": {"value":this.leaveForm.get('guide_approval').value,"type":"String"},
+          "comments":{"value":this.leaveForm.get('guide_comment').value,"type":"String"},
+        }
       }
+    }
       this.camundaService.completeTask(data).subscribe(response=>{
         if(response)this.router.navigate(['/']);
       });

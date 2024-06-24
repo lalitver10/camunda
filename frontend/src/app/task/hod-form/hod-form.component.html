@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-8">
+        <div class="col-6">
           <label for="comments">Comments</label>
             <textarea type="text-area" id="comment" class="form-control" formControlName="comment"></textarea>
           <div *ngIf="leaveForm.controls.comment.invalid && (leaveForm.controls.comment.dirty || leaveForm.controls.comment.touched)">
@@ -68,49 +68,39 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-6">
-            <div *ngFor="let option of options">
+        <div class="col-4">
+          <label for="comments">Guide Approval</label>
+            <div *ngFor="let option of guide_options">
                 <label>
                   <input type="radio" [value]="option.value" formControlName="guide_approval"/>
                   {{option.label}}
                 </label>
             </div>
         </div>
-      </div>
-      <div class="row mb-3" >
         <div class="col-8" *ngIf="!isGuideApproved">
           <label for="remLeave">Guide Comments</label>
             <textarea type="text-area" id="guide_comment" class="form-control" formControlName="guide_comment"></textarea>
-          <div *ngIf="leaveForm.controls.guide_comment.invalid && (leaveForm.controls.guide_comment.dirty || leaveForm.controls.guide_comment.touched)">
-            <small class="text-danger">Commnent is required</small>
-          </div>
         </div>
       </div>
 
-      <div class="row mb-3">
-        <div class="col-6">
-            <div *ngFor="let option of options">
+      <div class="row mb-4 light-yellow" >
+        <div class="col-4">
+          <label for="comments">DGPC Approval</label>
+            <div *ngFor="let option of dgpc_options">
                 <label>
                   <input type="radio" [value]="option.value" formControlName="dgpc_approval"/>
                   {{option.label}}
                 </label>
             </div>
         </div>
-      </div>
-      <div class="row mb-3" >
         <div class="col-8" *ngIf="!isGuideApproved">
           <label for="remLeave">DGPC Comments</label>
             <textarea type="text-area" id="dgpc_comment" class="form-control" formControlName="dgpc_comment"></textarea>
-          <div *ngIf="leaveForm.controls.dgpc_comment.invalid && (leaveForm.controls.dgpc_comment.dirty || leaveForm.controls.dgpc_comment.touched)">
-            <small class="text-danger">Commnent is required</small>
-          </div>
         </div>
       </div>
-
-
-      <div class="row mb-3">
-        <div class="col-6">
-            <div *ngFor="let option of options">
+      <div class="row mb-5">
+        <div class="col-4">
+            <div *ngFor="let option of hod_options">
                 <label>
                   <input type="radio" [value]="option.value" formControlName="hod_approval"/>
                   {{option.label}}
@@ -121,10 +111,7 @@
       <div class="row mb-3" >
         <div class="col-8" *ngIf="!isGuideApproved">
           <label for="remLeave">HOD Comments</label>
-            <textarea type="text-area" id="hod_approval" class="form-control" formControlName="hod_approval"></textarea>
-          <div *ngIf="leaveForm.controls.hod_approval.invalid && (leaveForm.controls.hod_approval.dirty || leaveForm.controls.dgpc_comment.touched)">
-            <small class="text-danger">Commnent is required</small>
-          </div>
+            <textarea type="text-area" id="hod_comment" class="form-control" formControlName="hod_comment"></textarea>
         </div>
       </div>
 

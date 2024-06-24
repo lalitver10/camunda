@@ -15,9 +15,13 @@ export class DgpcFormComponent {
    userDetails:any;
    isGuideApproved=false;
    options=[
-   { label:'Approved',value:'dgpc_app'},
-   { label:'DisApproved',value:'dgpc_dis'}
-   ];
+      { label:'Approved',value:'guide_app'},
+      { label:'DisApproved',value:'guide_dis'}
+    ];
+    // dgpc_options=[
+    //   { label:'Approved',value:'dgpc_app'},
+    //   { label:'DisApproved',value:'dgpc_dis'}
+    // ];
    taskId:any;
    taskDetails:any
   constructor(private fb: FormBuilder,
@@ -80,8 +84,12 @@ export class DgpcFormComponent {
       const data={
       'taskID':this.taskId,
       'taskName':'Approval For DGPRC',
-      'dgpc_approval':this.leaveForm.get('dgpc_approval').value,
-      'dgpc_comment':this.leaveForm.get('dgpc_comment').value
+      'camunda_data':{
+        "variables": {
+          "dgpc_approval": {"value":this.leaveForm.get('dgpc_approval').value,"type":"String"},
+          "dgprc_comment":{"value":this.leaveForm.get('dgpc_comment').value,"type":"String"},
+        }
+      }
       }
       this.camundaService.completeTask(data).subscribe(response=>{
         if(response)this.router.navigate(['/']);

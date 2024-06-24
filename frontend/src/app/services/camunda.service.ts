@@ -30,7 +30,7 @@ export class camundaService{
         return this.taskName;
       }
       completeTask(data:any){
-        console.log(data)
+        console.log('Hiii IIII')
         return this.http.post(`${this.baseUrl}/completeTask`,data); 
       }
 }

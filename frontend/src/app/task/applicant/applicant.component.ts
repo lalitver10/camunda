@@ -75,9 +75,16 @@ export class ApplicantComponent{
     if (this.leaveForm.valid) {
       const data={
       'taskID':this.taskId,
-      'guide_approval':this.leaveForm.get('guide_approval').value,
-      'guide_comment':this.leaveForm.get('guide_comment').value
+      'taskName':'Applicant Approval',
+      'camunda_data':{
+        "variables": {
+          "from": {"value":this.leaveForm.get('fromDate').value,"type":"String"},
+          "to":{"value":this.leaveForm.get('toDate').value,"type":"String"},
+          "rem_leave": {"value":this.leaveForm.get('remLeave').value,"type":"String"},
+          "reason":{"value":this.leaveForm.get('comment').value,"type":"String"},
+        }
       }
+    }
       this.camundaService.completeTask(data).subscribe(response=>{
         if(response)this.router.navigate(['/']);
       });

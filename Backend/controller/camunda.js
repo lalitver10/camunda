@@ -56,15 +56,23 @@ async function postLeave(req,res){
     const token = req.headers.authorization.split(" ")[1];
     const payload=jwt.decode(token);
   try{
-    const api= await fetch(apiUrl+`/task?assignee=${payload.rollNum}`, {
+    const user_api= await fetch(apiUrl+`/task?assignee=${payload.rollNum}`, {
       method: 'GET',
       headers: headers,
     })
-    if(!api.ok)return api.status(401);
-    const data=await api.json();
-    let taskDetails = data.map(obj => {
-      return { id: obj.id,name: obj.name,created:obj.created};
-     });
+    if(!user_api.ok)return user_api.status(401);
+    const user_data=await user_api.json();
+    
+    const group_api= await fetch(apiUrl+`/task?candidateUser=${payload.rollNum}`, {
+      method: 'GET',
+      headers: headers,
+    })
+    if(!group_api.ok)return group_api.status(401);
+    const group_data=await group_api.json();
+    const combined_data = [...user_data, ...group_data];
+    let taskDetails = combined_data.map(obj => {
+      return { id: obj.id, name: obj.name, created: obj.created };
+    });
     return res.status(200).json({'message':taskDetails})
   }catch(err){
     res.status(500).json({'error':'Something Went Wrong!!'})
@@ -91,29 +99,14 @@ async function completeTask(req,res){
    let body;
   try{  
     console.log(req.body.guide_approval,req.body.guide_comment,req.body.taskID);
-    
-    if(req.body.taskName=='Approval For DGPRC'){
-       body={
-        "variables": {
-          "dgpc_approval": {"value":req.body.dgpc_approval,"type":"String"},
-          "dgprc_comment":{"value":req.body.dgpc_comment,"type":"String"},
-        }
-      }
+    body=req.body.camunda_data;
+    if(req.body.taskName=='Approval For DGPRC')      {
+       
     }else if(req.body.taskName=='Approval For Guide'){
-      body={
-        "variables": {
-          "guide_approval": {"value":req.body.guide_approval,"type":"String"},
-          "comments":{"value":req.body.guide_comment,"type":"String"},
-        }
-      }
+
+    } else if(req.body.taskName=='Approval For HOD') {
       
-    } else if(req.body.taskName=='Approval For HOD'){
-      body={
-        "variables": {
-          "hod_approval": {"value":req.body.hod_approval,"type":"String"},
-          "hod_comment":{"value":req.body.hod_comment,"type":"String"},
-        }
-      }
+    }else if(req.body.taskName=='Applicant Approval'){
       
     }
   const data=await fetch(apiUrl+`/task/${req.body.taskID}/complete`, {

@@ -50,7 +50,7 @@ const nodemailer = require('nodemailer');
       to: "lalitver10@gmail.com",
       subject: "Leave Application has been Applied Successfully!!",
       text: "This is a test email sent using Nodemailer.",
-      //html:gethtml(),
+      html:gethtml(),
     };
   }
 
