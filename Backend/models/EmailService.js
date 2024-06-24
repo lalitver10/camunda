@@ -50,20 +50,26 @@ const nodemailer = require('nodemailer');
       to: "lalitver10@gmail.com",
       subject: "Leave Application has been Applied Successfully!!",
       text: "This is a test email sent using Nodemailer.",
-      html:gethtml(),
+      //html:gethtml(),
     };
   }
 
 
 // Send email
 async function sentMail(nam){
+  console.log(nam);
   name=nam;
+  try{
   const mailData=getmailData();
  const data= await transporter.sendMail(mailData, (error, info) => {
     if (error) {
         return console.log(error);
     }
+    console.log(data);
   });
+}catch(error){
+  console.log(error);
+}
 }
 module.exports = {
     sentMail
