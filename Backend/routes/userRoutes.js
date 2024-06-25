@@ -1,6 +1,6 @@
 var express = require('express');
 const app = express.Router();
-const {registerUser,login,getUser} = require("../controller/user");
+const {registerUser,login,getUser,getHistory} = require("../controller/user");
  app.use((req, res, next) => {
   console.log("Request received:", req.method, req.url,req.body);
   next();
@@ -13,4 +13,7 @@ const {registerUser,login,getUser} = require("../controller/user");
   .get(getUser);
   app.route('/setUser')
   .put();
+  app.route('/getHistory')
+  .get(getHistory);
+  
 module.exports = app;

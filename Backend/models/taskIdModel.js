@@ -6,10 +6,13 @@ var taskidSchema = new Schema({
     process_name: {
         type: String
     },
-    task_id: {
-        type: Number
+    process_id: {
+        type: String
     },
     user_id: {
+        type: String
+    },
+    progress: {
         type: String
     },
 

@@ -26,6 +26,8 @@ async function postLeave(req,res){
   try{  
     const token = req.headers.authorization.split(" ")[1];
     const payload=jwt.decode(token);
+    
+    const process_id=req.body.dept+Math.floor(Math.random()*1000);
   const data=await fetch(apiUrl+`/process-definition/key/leave_application/start`, {
       method: 'POST',
       headers: headers,
@@ -39,20 +41,21 @@ async function postLeave(req,res){
           "assignee":{"value":req.body.assignee,"type":"String"},
           "from":{"value":req.body.fromDate,"type":"String"},
           "to":{"value":req.body.toDate,"type":"String"},
-          "reason":{"value":req.body.comment,"type":"String"}
+          "reason":{"value":req.body.comment,"type":"String"},
+          "process_id": {"value":process_id,"type":"String"},
         },
-        "businessKey": "myBusinessKey123"
+        "businessKey": process_id
       }) 
     })
     if(!data.ok) throw new Error(`HTTP error! status: ${response.status}`);
     else{
       process_name='Leave Application';
-      task_id=Math.random()*100;
       user_id=payload.rollNum;
        const history =new TaskIdGen({
         process_name,
-        task_id,
-        user_id
+        process_id,
+        user_id,
+        progress:"InProgress"
        })
        const response =await history.save();
        if(response){
@@ -107,7 +110,7 @@ async function gettask(req,res){
     })
     //if(!taskDetails.ok) throw new Error(`HTTP error! status: ${taskDetails.status}`);
     const taskDetails=await data.json();
-    
+    console.log(taskDetails);
     return res.send(taskDetails)
   }catch(err){
       res.status(500).json({'error':err})
@@ -117,14 +120,23 @@ async function gettask(req,res){
 async function completeTask(req,res){
    let body;
   try{  
-    console.log(req.body.guide_approval,req.body.guide_comment,req.body.taskID);
+    console.log(req.body.process_id,req.body.camunda_data.variables.hod_approval);
     body=req.body.camunda_data;
     if(req.body.taskName=='Approval For DGPRC')      {
        
     }else if(req.body.taskName=='Approval For Guide'){
 
     } else if(req.body.taskName=='Approval For HOD') {
-      
+        if(req.body.camunda_data.variables.hod_approval.value=="hod_app"){
+          const task=await TaskIdGen.findOne({"process_id":req.body.process_id})
+          if(task){
+            console.log(task._id);
+           const res=await TaskIdGen.findByIdAndUpdate(task._id, { progress:'Completed' });
+           if(!res)console.log("Error aaya hai");
+          }else{
+             console.log("Bada Error Aaya hai");
+          }
+        }
     }else if(req.body.taskName=='Applicant Approval'){
       
     }

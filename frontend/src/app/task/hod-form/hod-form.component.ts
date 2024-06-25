@@ -93,6 +93,7 @@ export class HodFormComponent {
     if (this.leaveForm.valid) {
       const data={
       'taskID':this.taskId,
+      'process_id':this.userDetails.process_id.value,
       'taskName':'Approval For HOD',
       'camunda_data':{
         "variables": {

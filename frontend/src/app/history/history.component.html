@@ -1,1 +1,13 @@
-<p>history works!</p>
+<div *ngIf="isLoading" class="loading-indicator">
+    Loading...
+  </div>
+  
+<div class="card-container">
+    <div *ngFor="let his of history" class="card">
+      <h3>ID:{{his.process_id}}</h3>
+      <p>Process Name:{{ his.process_name }}</p>
+      <p>STATUS: {{ his.progress }}</p>
+      <button (click)="goToTask({'processId':his.process_id})">View History</button>
+    </div>
+  </div>
+  

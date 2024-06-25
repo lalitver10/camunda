@@ -45,5 +45,8 @@ export class loginAndSignup{
     console.log("getUser")
     return this.http.get(`${this.url}/getUser`);
   }
+  getAllHistory(){
+    return this.http.get(`${this.url}/getHistory`,{ observe: 'response' })
+  }
 
 }

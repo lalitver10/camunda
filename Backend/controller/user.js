@@ -74,22 +74,21 @@ async function getUser(req,res){
    return res.status(200).json(details)
 }
 
-async function updateHistory(req,res){
-     
-    new History({
-
-     })
-
-
-
-   const data=await User.findById(payload.id);
-   return res.status(200).json(details)
+async function getHistory(req,res){
+    const token = req.headers.authorization.split(" ")[1];
+    const payload=jwt.decode(token);
+    const data=await TaskIdGen.find({'user_id':payload.rollNum});
+    if(data){
+        console.log(data);
+        return res.status(200).json(data);
+    }
 }
 
 module.exports = {
     registerUser,
     login,
-    getUser
+    getUser,
+    getHistory
   };
 
 
