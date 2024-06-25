@@ -25,7 +25,7 @@ export class HodFormComponent {
     dgpc_options=[
       { label:'Approved',value:'dgpc_app'},
       { label:'DisApproved',value:'dgpc_dis'}
-      ];
+    ];
    taskId:any;
    taskDetails:any
   constructor(private fb: FormBuilder,

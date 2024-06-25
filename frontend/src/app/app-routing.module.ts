@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HistoryComponent } from './history/history.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LeaveComponent } from './leave/leave.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -14,6 +15,7 @@ import { AuthGuard } from './services/auth.guard'
 const routes: Routes = [
   { path: 'applyLeave', component: LeaveComponent,canActivate: [AuthGuard] },
   { path: 'allTask', component: TasksComponent,canActivate: [AuthGuard] },
+  { path: 'history', component: HistoryComponent,canActivate: [AuthGuard] },
   { path: 'task/:id', component: TaskComponent,canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

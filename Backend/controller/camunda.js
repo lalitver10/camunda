@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/userModel');
+const TaskIdGen = require('../models/taskIdModel');
+const History = require('../models/historyModel');
 const email = require('../models/EmailService');
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken');
@@ -22,6 +24,8 @@ const headers = {
 
 async function postLeave(req,res){
   try{  
+    const token = req.headers.authorization.split(" ")[1];
+    const payload=jwt.decode(token);
   const data=await fetch(apiUrl+`/process-definition/key/leave_application/start`, {
       method: 'POST',
       headers: headers,
@@ -36,13 +40,28 @@ async function postLeave(req,res){
           "from":{"value":req.body.fromDate,"type":"String"},
           "to":{"value":req.body.toDate,"type":"String"},
           "reason":{"value":req.body.comment,"type":"String"}
-        }
+        },
+        "businessKey": "myBusinessKey123"
       }) 
     })
     if(!data.ok) throw new Error(`HTTP error! status: ${response.status}`);
     else{
-      email.sentMail(req.body.name);
-     return res.status(201).json({"message":"Leave Applied Successfully!!"});
+      process_name='Leave Application';
+      task_id=Math.random()*100;
+      user_id=payload.rollNum;
+       const history =new TaskIdGen({
+        process_name,
+        task_id,
+        user_id
+       })
+       const response =await history.save();
+       if(response){
+        email.sentMail(req.body.name);
+        return res.status(201).json({"message":data});
+      }else{
+        return res.status(301).json({"message":data});
+      }
+     
      
     }
   }catch(err){
@@ -115,7 +134,7 @@ async function completeTask(req,res){
       body: JSON.stringify(body) 
     })
     if(!data.ok) res.status(301).json({"message":"Leave Applied UnSuccessfully!!"})
-    return res.status(201).json({"message":"Leave Applied Successfully!!"})
+    return res.status(201).json({"message":data})
   }catch(err){
       res.status(500).json({'error':'Something Went Wrong!!'})
     }

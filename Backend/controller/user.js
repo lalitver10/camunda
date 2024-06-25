@@ -3,6 +3,8 @@ const User = require('../models/userModel');
 const camunda=require('./camunda')
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken');
+const TaskIdGen = require('../models/taskIdModel');
+const History = require('../models/historyModel');
 const saltRounds = 10;
 const passkey='#5ftwfd&vsgvc(0*&$%vgygy';
 
@@ -25,7 +27,7 @@ async function registerUser(req, res){
         return res.status(201).json({ message: "User Already Exist!!" }); 
       }
         else{
-            const response =await await newUser.save();
+            const response =await newUser.save();
 
             if(response){
                 camunda.createUser(req.body);
@@ -69,6 +71,18 @@ async function getUser(req,res){
     'dept':data.dept,
     'guide':data.guide
    }
+   return res.status(200).json(details)
+}
+
+async function updateHistory(req,res){
+     
+    new History({
+
+     })
+
+
+
+   const data=await User.findById(payload.id);
    return res.status(200).json(details)
 }
 

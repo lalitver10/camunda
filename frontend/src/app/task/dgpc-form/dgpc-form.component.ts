@@ -14,14 +14,14 @@ export class DgpcFormComponent {
    isLoading=true;
    userDetails:any;
    isGuideApproved=false;
-   options=[
+   guide_options=[
       { label:'Approved',value:'guide_app'},
       { label:'DisApproved',value:'guide_dis'}
     ];
-    // dgpc_options=[
-    //   { label:'Approved',value:'dgpc_app'},
-    //   { label:'DisApproved',value:'dgpc_dis'}
-    // ];
+    dgpc_options=[
+      { label:'Approved',value:'dgpc_app'},
+      { label:'DisApproved',value:'dgpc_dis'}
+    ];
    taskId:any;
    taskDetails:any
   constructor(private fb: FormBuilder,

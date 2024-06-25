@@ -1,8 +1,13 @@
 <div *ngIf="isLoading" class="loading-indicator">
     Loading...
   </div>
-<div class="mt-3 p-4 bg-secondary text-white rounded">
-    <h1>DGPC Approval</h1>
+  <div class="row mb-3">
+    <div class="col-10">
+    <div class="heading">
+      <h2>DGPC Approval</h2>
+    </div>
+  </div>
+    <button class="btn btn-primary button-pill">claim</button>
   </div>
   <div class="container" *ngIf="leaveForm">
     <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
@@ -69,7 +74,7 @@
       </div>
       <div class="row mb-3">
         <div class="col-6">
-            <div *ngFor="let option of options">
+            <div *ngFor="let option of guide_options">
                 <label>
                   <input type="radio" [value]="option.value" formControlName="guide_approval"/>
                   {{option.label}}
@@ -86,7 +91,7 @@
 
       <div class="row mb-3">
         <div class="col-6">
-            <div *ngFor="let option of options">
+            <div *ngFor="let option of dgpc_options">
                 <label>
                   <input type="radio" [value]="option.value" formControlName="dgpc_approval"/>
                   {{option.label}}

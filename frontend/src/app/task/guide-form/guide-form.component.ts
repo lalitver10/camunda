@@ -14,7 +14,7 @@ export class GuideFormComponent {
    isLoading=false;
    userDetails:any;
    isGuideApproved=false;
-   options=[
+   guide_options=[
    { label:'Approved',value:'guide_app'},
    { label:'DisApproved',value:'guide_dis'}
    ];
